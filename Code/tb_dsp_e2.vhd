@@ -19,10 +19,10 @@ architecture tb of tb_dsp_e2 is
               w2   : in std_logic_vector (3  downto 0);
               a1   : in std_logic_vector (3  downto 0);
               a2   : in std_logic_vector (3  downto 0);
-              a1w1 : out std_logic_vector (7  downto 0);
-              a2w1 : out std_logic_vector (7  downto 0);
-              a1w2 : out std_logic_vector (7  downto 0);
-              a2w2 : out std_logic_vector (7  downto 0));
+              a1w1 : out std_logic_vector (6  downto 0);
+              a2w1 : out std_logic_vector (6  downto 0);
+              a1w2 : out std_logic_vector (6  downto 0);
+              a2w2 : out std_logic_vector (6  downto 0));
     end component;
 
     signal clk  : std_logic;
@@ -30,10 +30,10 @@ architecture tb of tb_dsp_e2 is
     signal w2   : std_logic_vector (3  downto 0);
     signal a1   : std_logic_vector (3  downto 0);
     signal a2   : std_logic_vector (3  downto 0);
-    signal a1w1 : std_logic_vector (7  downto 0);
-    signal a2w1 : std_logic_vector (7  downto 0);
-    signal a1w2 : std_logic_vector (7  downto 0);
-    signal a2w2 : std_logic_vector (7  downto 0);
+    signal a1w1 : std_logic_vector (6  downto 0);
+    signal a2w1 : std_logic_vector (6  downto 0);
+    signal a1w2 : std_logic_vector (6  downto 0);
+    signal a2w2 : std_logic_vector (6  downto 0);
 
     constant TbPeriod : time := 300 ns;
     signal TbClock : std_logic := '0';
@@ -90,10 +90,10 @@ begin
             
             wait for TbPeriod * 4; -- 4 pipeline stages within the dsp block
             
-            hwrite(v_OLINE, a1w1, right, 0);
-            hwrite(v_OLINE, a2w1, right, 3);
-            hwrite(v_OLINE, a1w2, right, 3);
-            hwrite(v_OLINE, a2w2, right, 3);
+            write(v_OLINE, a1w1, right, 0);
+            write(v_OLINE, a2w1, right, 8);
+            write(v_OLINE, a1w2, right, 8);
+            write(v_OLINE, a2w2, right, 8);
             writeline(file_output_results, v_OLINE);
         
         end loop;
