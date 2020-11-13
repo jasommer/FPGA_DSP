@@ -15,8 +15,8 @@ architecture tb of tb_dsp_e2 is
 
     component dsp_e2
         port (clk  : in std_logic;
-              w1   : in std_logic_vector (3  downto 0);
-              w2   : in std_logic_vector (3  downto 0);
+              w1   : in std_logic_vector (2  downto 0);
+              w2   : in std_logic_vector (2  downto 0);
               a1   : in std_logic_vector (3  downto 0);
               a2   : in std_logic_vector (3  downto 0);
               a1w1 : out std_logic_vector (6  downto 0);
@@ -26,8 +26,8 @@ architecture tb of tb_dsp_e2 is
     end component;
 
     signal clk  : std_logic;
-    signal w1   : std_logic_vector (3  downto 0);
-    signal w2   : std_logic_vector (3  downto 0);
+    signal w1   : std_logic_vector (2  downto 0);
+    signal w2   : std_logic_vector (2  downto 0);
     signal a1   : std_logic_vector (3  downto 0);
     signal a2   : std_logic_vector (3  downto 0);
     signal a1w1 : std_logic_vector (6  downto 0);
@@ -65,8 +65,8 @@ begin
         variable v_SPACE     : character;
         variable v_a1        : std_logic_vector(3 downto 0);
         variable v_a2        : std_logic_vector(3 downto 0);
-        variable v_w1        : std_logic_vector(3 downto 0);
-        variable v_w2        : std_logic_vector(3 downto 0);
+        variable v_w1        : std_logic_vector(2 downto 0);
+        variable v_w2        : std_logic_vector(2 downto 0);
     begin
     
         file_open(file_output_results, "output_results.txt", write_mode);

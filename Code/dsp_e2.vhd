@@ -26,8 +26,8 @@ use IEEE.NUMERIC_STD.ALL;
 entity dsp_e2 is
 Port ( 
         clk     : in  std_logic;
-        w1      : in  std_logic_vector (3  downto 0); 
-        w2      : in  std_logic_vector (3  downto 0);
+        w1      : in  std_logic_vector (2  downto 0); 
+        w2      : in  std_logic_vector (2  downto 0);
         a1      : in  std_logic_vector (3  downto 0);
         a2      : in  std_logic_vector (3  downto 0);
         a1w1    : out  std_logic_vector (6  downto 0);
@@ -67,22 +67,23 @@ architecture Behavioral of dsp_e2 is
         
         -- populate  c_vect
         c_vect(31 downto 0) <= (others => '0');
-        c_vect(32) <= w2(3);  
+        c_vect(32) <= w2(2);  
         c_vect(47 downto 33) <= (others => '0');          
         
         -- map w1 to a_vect
-        a_vect(3  downto 0) <= w1;
+        a_vect(2  downto 0) <= w1;
         
-        for i in 4 to 6 loop --a_vect'high
-            a_vect(i) <= w1(3);
+        for i in 3 to 6 loop --a_vect'high
+            a_vect(i) <= w1(2);
         end loop;
         for i in 7 to a_vect'high loop --
             a_vect(i) <= '0';
         end loop;
         
         -- map w2 to d_vect
-        d_vect(d_vect'high) <= w2(3);
-        d_vect(d_vect'high-1 downto d_vect'high-4) <= w2;
+        d_vect(d_vect'high) <= w2(2);
+        d_vect(d_vect'high-1) <= w2(2);
+        d_vect(d_vect'high-2 downto d_vect'high-4) <= w2;
         
         for i in 0 to d_vect'high-5 loop
             d_vect(i) <= '0';
